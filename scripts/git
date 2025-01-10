@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+sudo apt purge git
+sudo apt install libz-dev libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext cmake gcc
+

@@ -1,0 +1,39 @@
+#!/bin/bash
+
+cd ~
+
+#Personal directory
+mkdir personal
+cd personal
+mkdir configs scripts exp packages contrib project tools env logs notes api
+
+#in configs
+cd configs
+mkdir nvim shell ver-ctrl
+cd ..
+
+#in scripts
+cd scripts
+mkdir auto dev
+#git clone https://github.com/PyDevC/build_.git
+cd ..
+
+#in tools
+cd tools
+mkdir share
+cd ~
+
+#Prof
+mkdir prof
+cd prof
+mkdir configs scripts documents leetcode server dkr-cnt tools env
+
+#in configs
+cd configs
+mkdir nvim git tmux i3 cicd shell
+cd ..
+
+#in tools
+cd tools
+sudo ln -s $HOME/personal/tools/share $HOME/prof/tools
+cd ~

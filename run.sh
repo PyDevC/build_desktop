@@ -18,12 +18,26 @@ while [[ $# -gt 0 ]]; do
 done
 
 log(){
-  echo "${1##*/}"
+  # check the commandline arguments
+  if [ "$#" -eq 2 ]; then
+    case "$1" in 
+      "--all")
+        index=":1:3";;
+      *)
+       echo "not an argument";;
+    esac
+    file="$2"
+  elif [ "$#" -eq 1 ]; then
+    file="$1"
+  fi
+  components=("#" "git" "rm" "rmdir") 
+  index=""
+
   while read -r line;do 
-    if [ "$line" != "${line#*#}" ]; then    
+    if [ "$line" != "${line#*"${components[@]"${index}"}"}" ]; then    
       printf '%s\n' "$line"
     fi
-  done < "$1" 
+  done < "$file" 
 }
   
 
@@ -31,8 +45,8 @@ scripts_dir="$PWD/scripts"
 
 for file in "$scripts_dir"/*; do
   if [[ "$dry" == "1" ]]; then
-    printf "[[ DRY RUN:]]\n"
-    log "$file"
+    printf "[[ DRY RUN: ${file##*/}]]\n"
+    log "$file" "$2"
   else 
     $file
   fi

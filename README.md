@@ -1,24 +1,12 @@
 # BUILD
 
 This repo is used to quickly setup ubuntu or debian based linux enviornments. 
-You can easily run the scripts in scripts directory or run the "run.sh" file
+You can easily run the scripts in scripts directory or run the "run" file
 
 ## Run
-To run the scripts normally
-```bash
-./run.sh 
-```
 
-If you want to check what is going to happen in this particular scripts
-then run this command. 
-```bash
-./run.sh --dry
-```
+`./run` to run all the files in scripts using bash
 
-I will update this so that you can execute different files with different
-requirements.
+`./run --dry` to check which files are running
 
-|> Note:  Check the TODO
-|> Also The dry run method idea i got from ThePrimeagen
-
-
+`./run --dry-analyze` to see read the "#|" lines in the file, to read infile descriptions.

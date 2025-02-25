@@ -12,7 +12,7 @@ You can easily run the scripts in scripts directory or run the "run" file.
 
 ## Install
 To install normally
-`source ./Install.sh`
+`source ./Install.sh github_Username githubemail` enter your actual github details
 `source ./configure.sh`
 
 Creates a directory structure and contains all the env variables.

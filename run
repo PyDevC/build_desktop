@@ -6,7 +6,9 @@ dry="0"
 grep=""
 analyze="0"
 
-run_dir=`find "$script_dir/scripts" -mindepth 1 -maxdepth 1 -executable`
+#run_dir=`find $script_dir/scripts -mindepth 1 -maxdepth 1 -executable`
+echo $scripts_dir
+echo $run_dir
 
 readfile(){
     file="$2"
@@ -42,7 +44,8 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-for s in $run_dir; do 
+run_dir=$(pwd)
+for s in $run_dir/scripts/*; do 
     # filter out the mentioned files from grep
     if echo $s | grep -vq "$grep"; then
         log "grep \"$grep\" filter out $s"

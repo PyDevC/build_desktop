@@ -1,6 +1,6 @@
 [user]
-  name = $GithubUsername
-  email = $GithubEmail
+  name = Username
+  email = email
 [core]
 	filemode = true
 	symlinks = true

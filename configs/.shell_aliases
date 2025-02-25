@@ -1,0 +1,5 @@
+# Aliases
+
+alias cdd='cd $(fuzzy dir ~/personal)'
+alias cds='cd $(fuzzy dir)'
+alias cdf='cd $(fuzzy file)'

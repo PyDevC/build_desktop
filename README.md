@@ -12,8 +12,8 @@ You can easily run the scripts in scripts directory or run the "run" file.
 
 ## Install
 To install normally
-`./Install.sh`
-`./configure.sh`
+`source ./Install.sh`
+`source ./configure.sh`
 
 Creates a directory structure and contains all the env variables.
 List of env variables

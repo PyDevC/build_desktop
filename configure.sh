@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cd configs
-mv .* $HOME
+cp -r !(tmux.conf) $HOME
 
 mkdir $XDG_CONFIG_HOME/tmux/
-mv tmux.conf $XDG_CONFIG_HOME/tmux
+cp tmux.conf $XDG_CONFIG_HOME/tmux

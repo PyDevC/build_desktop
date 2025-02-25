@@ -1,0 +1,18 @@
+[user]
+  name = $GithubUsername
+  email = $GithubEmail
+[core]
+	filemode = true
+	symlinks = true
+	commitGraph = true
+	editor = nvim
+[help]
+	autoCorrect = 2
+[init]
+	defaultBranch = main
+[credential]
+	credentialStore = secretservice
+	helper = manager
+	helper = /usr/local/bin/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true

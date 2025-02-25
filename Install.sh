@@ -3,18 +3,14 @@
 # create file structure
 mkdir -p ~/personal/tmux ~/bin ~/personal/codes ~/env ~/clones
 
-
-# read github configs
-read -p "Github Username: " GithubUsername
-read -p "Github Email: " GithubEmail
-
 # new system variables
 
 GitClone=~/clones
 
-export GithubUsername=$GithubUsername
-export GithubEmail=$GithubEmail
+export GithubUsername=$1
+export GithubEmail=$2
 export GitClone=$GitClone
+export XDG_CONFIG_HOME=~/.config
 
 chmod +x run
 ./run

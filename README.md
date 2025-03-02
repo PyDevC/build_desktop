@@ -2,7 +2,7 @@
 
 A fast build script for quick ubuntu setup.
 
-[!important] under development 
+> [!important] under development 
 
 ### Installation scripts
 - docker

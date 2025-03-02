@@ -1,25 +1,8 @@
-# BUILD
+# BUILD Desktop
 
-This repo is used to quickly setup ubuntu or debian based linux enviornments. 
-You can easily run the scripts in scripts directory or run the "run" file.
+A fast build script for quick ubuntu setup.
 
-## Directory structure
-|-personal-|-codes
-|          |-tmux
-|-env
-|-bin
-|-clones
-
-## Install
-To install normally
-`source ./Install.sh github_Username githubemail` enter your actual github details
-`source ./configure.sh`
-
-Creates a directory structure and contains all the env variables.
-List of env variables
-- $GithubUsername
-- $GithubEmail
-- $GitClone
+[!important] under development 
 
 ### Installation scripts
 - docker
@@ -29,21 +12,6 @@ List of env variables
 - tmux
 - zsh
 
+# Install
 
-## Configure
-configs contain all the configuration files for shells and tools
-.bashrc 
-.zshrc
-.shell_aliases
-.gitconfig
-tmux.conf
-
-if .configure doesn't work then manually all files in configs dir into $HOME
-and put tmux.conf in ~/.config/tmux dir everything will be fine.
-
-## Run Specific
-
-`./run` will run all the scripts in scripts/ dir
-
-**Warning** Under Development
-`./run --filter="git"` This is still under development
+`run --dry` to check all the scripts that will be running.

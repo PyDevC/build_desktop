@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
-cd configs
-cp -r !(tmux.conf) $HOME
+repo="https://github.com/PyDevC/.dotfiles.git"
 
-mkdir $XDG_CONFIG_HOME/tmux/
-cp tmux.conf $XDG_CONFIG_HOME/tmux
+mkdir ~/.dot
+git clone $repo ~/.dot
 
-olduser=("name = Username")
-oldemail=("email = email")
-
-newuser=("name = $GithubUsername")
-newemail=("email = $GithubEmail")
-
-sed -i -e 's/$(old)/$(new)/g' ~/.gitconfig
+# establishing symlinks to respective places
+cd ~/.dot/
+configs=$(ls -d */)
+for dir in $configs; do
+  echo "Creating ${dir%%/*}"
+  ln -s "$HOME/.dot/$dir" "$HOME/.config/${dir%%/*}"
+done

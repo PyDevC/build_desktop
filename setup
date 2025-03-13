@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+./run
+
+git clone https://github.com/PyDevC/.dot.git $HOME/.dot

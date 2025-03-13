@@ -11,7 +11,7 @@ version=`git --version`
 
 echo "installed git version: $version" 
 
-if [[ -z $HOME/git ]]; then
+if [[ ! -d $HOME/git ]]; then
     git clone https://git.kernel.org/pub/scm/git/git.git $HOME/git
 fi
 

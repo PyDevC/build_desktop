@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+curl https://sh.rustup.rs -sSf > rustup.sh
+bash rustup.sh

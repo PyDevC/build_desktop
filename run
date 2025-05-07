@@ -12,11 +12,14 @@ export DEV_ENV="$DEV_ENV"
 
 grep=""
 dry_run="0"
+install_run="0"
 
 while [[ $# -gt 0 ]]; do
     echo "ARG: \"$1\""
     if [[ "$1" == "--dry" ]]; then
         dry_run="1"
+    elif [[ "$1" == "--install" ]]; then
+        install_run="1"
     else
         grep="$1"
     fi
@@ -34,6 +37,14 @@ log() {
 log "RUN: env: $env -- grep: $grep"
 
 runs_dir=`find $script_dir/runs -mindepth 1 -maxdepth 1 -executable`
+install_dir=`find $script_dir/install -mindepth 0 -maxdepth 1 -executable`
+
+if [[ $install_run == "1" ]]; then
+    for s in $install_dir; do
+        $s
+    done
+    exit 0
+fi
 
 for s in $runs_dir; do
     if echo "$s" | grep -vq "$grep"; then

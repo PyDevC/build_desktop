@@ -1,1 +1,3 @@
-sudo apt install rocminfo nvtop radeontop
+#!/usr/bin/env bash
+
+sudo dnf install -y rocminfo nvtop radeontop

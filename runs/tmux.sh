@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo $PACK_MANG install tmux
+sudo dnf install -y tmux

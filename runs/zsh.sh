@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo $PACK_MANG install zsh
+sudo dnf install -y zsh
 hash -r
 sudo chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

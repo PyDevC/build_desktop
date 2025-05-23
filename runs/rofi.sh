@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo $PACK_MANG install rofi-wayland
+sudo dnf install -y rofi-wayland

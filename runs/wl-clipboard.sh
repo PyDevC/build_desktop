@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo $PACK_MANG install wl-clipboard
+sudo dnf install -y wl-clipboard

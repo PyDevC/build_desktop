@@ -7,7 +7,7 @@ fi
 
 neovim_loc=$HOME/personal/neovim
 
-sudo apt -y install cmake gettext lua5.1 liblua5.1-0-dev
+sudo $PACK_MANG -y install cmake gettext lua5.1 liblua5.1-0-dev
 
 if [[ ! -d $neovim_loc ]];then
     git clone https://github.com/neovim/neovim.git $neovim_loc

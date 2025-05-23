@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo apt install rofi
+sudo $PACK_MANG install rofi-wayland

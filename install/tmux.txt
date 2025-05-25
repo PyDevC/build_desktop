@@ -1,0 +1,5 @@
+# Fedora
+sudo dnf install -y tmux
+
+# Ubuntu
+sudo apt install -y tmux

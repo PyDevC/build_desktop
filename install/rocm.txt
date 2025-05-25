@@ -1,0 +1,2 @@
+# Fedora
+sudo dnf install rocminfo rocm-smi rocm-hip rocm-opencl nvtop radeontop

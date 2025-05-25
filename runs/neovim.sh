@@ -7,8 +7,6 @@ fi
 
 neovim_loc=$HOME/personal/neovim
 
-sudo dnf install -y cmake gettext lua5.1 liblua5.1-0-dev
-
 if [[ ! -d $neovim_loc ]];then
     git clone https://github.com/neovim/neovim.git $neovim_loc
 fi

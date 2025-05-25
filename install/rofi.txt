@@ -1,0 +1,11 @@
+# Fedora X
+sudo dnf install -y rofi
+
+# Fedora Wayland
+sudo dnf install -y rofi-wayland
+
+# Ubuntu X
+sudo apt install -y rofi
+
+# Ubuntu Wayland
+sudo apt install -y rofi-wayland

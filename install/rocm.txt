@@ -1,2 +1,6 @@
 # Fedora
-sudo dnf install rocminfo rocm-smi rocm-hip rocm-opencl nvtop radeontop
+sudo dnf install rocminfo rocm-smi rocm-hip rocm-opencl nvtop radeontop amdsmi \
+hipblas hsakmt rocclr rocdecode rocm-compilersupport rocm-core rocm-omp \
+rocm-runtime rocm-device-libs rocm-cmake hipsparse rocalution rocblas rocfft \
+hipfft rocprim rocrand hipcub hiprand rocsolver rocsparse rocthrust miopen rccl \
+rocjpeg roctracer hipify hipblast rocal rocm python-tensile python-devel

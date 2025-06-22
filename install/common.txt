@@ -1,5 +1,0 @@
-# Fedora
-sudo dnf install -y build-essentials luarocks npm ripgrep
-
-# Ubuntu
-sudo apt install -y build-essentials luarocks npm ripgrep

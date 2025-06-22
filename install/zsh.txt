@@ -1,7 +1,0 @@
-# Fedora 
-sudo dnf install zsh
-../runs/zsh.sh
-
-# Ubuntu
-sudo apt install zsh
-../runs/zsh.sh

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ ! -d $HOME/cpython ]]; then
+if [[ ! -d $HOME/personal/github/cpython ]]; then
     git clone https://github.com/python/cpython.git $HOME/personal/github/cpython
 fi
 

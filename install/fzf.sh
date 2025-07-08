@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 # Ubuntu
-git clone https://github.com/junegunn/fzf.git $HOME/personal/github/fzf
-git -C $HOME/personal/github/fzf fetch --all
-$HOME/fzf/install
-rm -rf $HOME/fzf
+installation_path=$HOME/personal/github/fzf
+
+git clone https://github.com/junegunn/fzf.git $installation_path
+git -C $installation_path fetch --all
+$installation_path/install
+rm -rf $installation_path

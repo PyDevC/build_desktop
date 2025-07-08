@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 export DEV_ENV=$(pwd)
+
 # create basic dirctory pattern
 mkdir -p personal personal/exp personal/env/python personal
 
@@ -12,5 +13,4 @@ ln -s ~/.dot/bin bin
 ln -s ~/.dot/zsh/.zshrc .zshrc
 ln -s ~/.dot/zsh/.zsh_profile .zsh_profile
 
-# reboot
-reboot
+./config

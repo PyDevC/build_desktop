@@ -10,5 +10,4 @@ elif [[ "$1" == "ubuntu-x" || "$1" == "ubuntu-w" ]]; then
 elif [[ "$1" == "fedora-x" || "$1" == "Fedora-w" ]]; then
     sudo dnf copr enable pgdev/ghostty
     sudo dnf install -y ghostty
-
 fi

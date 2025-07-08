@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ -z ! "$1" ]]; then
+if [[ ! -z "$1" ]]; then
     echo "no installation system provided"
     exit 0
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+export DEV_ENV=$(pwd)
 # create basic dirctory pattern
 mkdir -p personal personal/exp personal/env/python personal
 

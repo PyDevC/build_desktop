@@ -41,7 +41,7 @@ install_dir=`find $script_dir/install -mindepth 0 -maxdepth 1 -executable`
 
 if [[ $install_run == "1" ]]; then
     for s in $install_dir; do
-        $s
+        $s "Fedora-w" # Manually add your own system
     done
     exit 0
 fi

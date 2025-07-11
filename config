@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-if [[ ! -d $HOME/.dot ]];then
-    git clone https://github.com/PyDevC/.dot.git $HOME/.dot
-fi

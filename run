@@ -1,32 +1,53 @@
 #!/usr/bin/env bash
+
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 if [ -z "$DEV_ENV" ]; then
-    echo "env var DEV_ENV needs to be present"
+    echo "DEV_ENV not present"
+    echo "try DEV_ENV=\$(pwd), if running in the main build_desktop repository"
     exit 1
 fi
 
-# if i just did DEV_ENV=$(pwd) ./run then this is needed for the rest of the
-# scripts
+# Do not remove cause DEV_ENV will be used by various scripts in future
 export DEV_ENV="$DEV_ENV"
 
+# ARGS
 grep=""
-dry_run="0"
-install_run="0"
+os=""
+
+# Flags
+dry_run=""
+install=""
+build=""
+config=""
 
 while [[ $# -gt 0 ]]; do
-    echo "ARG: \"$1\""
-    if [[ "$1" == "--dry" ]]; then
-        dry_run="1"
-    elif [[ "$1" == "--install" ]]; then
-        install_run="1"
+
+    # check if its a flag
+    if [[ "${1:0:2}" == "--" ]]; then
+
+        echo "Flag: \"$1\""
+        if [[ "$1" == "--dry" ]]; then
+            dry_run="1"
+        elif [[ "$1" == "--install" ]]; then
+            install="1"
+        elif [[ "$1" == "--build" ]]; then # not implemented
+            build="1"
+        elif [[ "$1" == "--config" ]]; then
+            config="1"
+        fi
+
     else
+        # This will be used for filtering out
+        echo "ARG: \"$1\""
         grep="$1"
     fi
+
     shift
 done
 
 log() {
+    # I don't think I will need to store logs in a file
     if [[ $dry_run == "1" ]]; then
         echo "[DRY_RUN]: $1"
     else
@@ -39,10 +60,39 @@ log "RUN: env: $env -- grep: $grep"
 runs_dir=`find $script_dir/runs -mindepth 1 -maxdepth 1 -executable`
 install_dir=`find $script_dir/install -mindepth 0 -maxdepth 1 -executable`
 
-if [[ $install_run == "1" ]]; then
+if [[ $install == "1" ]]; then
     for s in $install_dir; do
-        $s "Fedora-w" # Manually add your own system
+        if echo "$s" | grep -vq "$grep"; then
+            log "grep \"$grep\" filtered out $s"
+            continue
+        fi
+
+        log "running script: $s"
+ 
+    if [[ $dry_run == "0" ]]; then
+        $s "Fedora-w" # can Change it to other distro but need a better method to do this
+    fi
+
     done
+    exit 0
+fi
+
+if [[ $config == "1" && ! -d $HOME/.dot ]]; then
+
+    git clone https://github.com/PyDevC/.dot.git $HOME/.dot
+
+    mkdir -p personal personal/exp personal/env/python personal
+    
+    # this is needed so that It works as intended
+    ln -s ~/.dot/bin bin
+    ln -s ~/.dot/zsh/.zshrc .zshrc
+    ln -s ~/.dot/zsh/.zsh_profile .zsh_profile
+
+    . ~/.zshrc
+    syncf
+else
+    echo "config already exists, remove it and re-run"
+    echo "or check for command in build_desktop/run" 
     exit 0
 fi
 
@@ -58,50 +108,3 @@ for s in $runs_dir; do
         $s
     fi
 done
-
-#remove_files() {
-#    pushd $1
-#    (
-#        configs=`find . -mindepth 1 -maxdepth 1 -type d`
-#        if [[ $dry_run == "1" ]]; then
-#            echo "[DRY_RUN]: removing: $configs"
-#        else
-#            echo "removing: $configs"
-#        fi
-#
-#        for c in $configs; do
-#            directory=${2%/}/${c}
-#            if [[ $dry_run == "1" ]]; then
-#                echo "[DRY_RUN]:    removing: $directory"
-#            else
-#                echo "    removing: $directory"
-#                rm -rf $directory
-#            fi
-#        done
-#
-#        if [[ $dry_run == "1" ]]; then
-#            echo "copying env: $2"
-#        else
-#            echo "copying env: $2"
-#            cp -r ./* $2
-#        fi
-#    )
-#    popd
-#}
-
-#run_env() {
-#    pushd $script_dir
-#    echo "removing ~config"
-#    remove_files env/.config $XDG_CONFIG_HOME
-#
-#    echo "removing ~local"
-#    remove_files env/.local $HOME/.local
-#
-#    echo "copying zsh"
-#    if [[ $dry_run == "0" ]]; then
-#        cp $script_dir/env/.zshrc ~/.zshrc
-#        cp $script_dir/env/.zsh_profile ~/.zsh_profile
-#    fi
-#
-#    popd
-#}

@@ -16,7 +16,7 @@ grep=""
 os=""
 
 # Flags
-dry_run=""
+dry_run="0"
 install=""
 build=""
 config=""
@@ -58,7 +58,7 @@ log() {
 log "RUN: env: $env -- grep: $grep"
 
 runs_dir=`find $script_dir/runs -mindepth 1 -maxdepth 1 -executable`
-install_dir=`find $script_dir/install -mindepth 0 -maxdepth 1 -executable`
+install_dir=`find $script_dir/install -mindepth 1 -maxdepth 1 -executable`
 
 if [[ $install == "1" ]]; then
     for s in $install_dir; do
@@ -77,23 +77,24 @@ if [[ $install == "1" ]]; then
     exit 0
 fi
 
-if [[ $config == "1" && ! -d $HOME/.dot ]]; then
+if [[ $config == "1" ]]; then
 
-    git clone https://github.com/PyDevC/.dot.git $HOME/.dot
+    if [[ ! -d $HOME/.dot ]]; then
+        git clone https://github.com/PyDevC/.dot.git $HOME/.dot
+        mkdir -p personal personal/exp personal/env/python personal
 
-    mkdir -p personal personal/exp personal/env/python personal
-    
-    # this is needed so that It works as intended
-    ln -s ~/.dot/bin bin
-    ln -s ~/.dot/zsh/.zshrc .zshrc
-    ln -s ~/.dot/zsh/.zsh_profile .zsh_profile
+        # this is needed so that It works as intended
+        ln -s ~/.dot/bin bin
+        ln -s ~/.dot/zsh/.zshrc .zshrc
+        ln -s ~/.dot/zsh/.zsh_profile .zsh_profile
 
-    . ~/.zshrc
-    syncf
-else
-    echo "config already exists, remove it and re-run"
-    echo "or check for command in build_desktop/run" 
-    exit 0
+        . ~/.zshrc
+        syncf
+    else
+        echo "config already exists, remove it and re-run"
+        echo "or check for command in build_desktop/run" 
+        exit 0
+    fi
 fi
 
 for s in $runs_dir; do

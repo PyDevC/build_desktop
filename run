@@ -57,8 +57,16 @@ log() {
 
 log "RUN: env: $env -- grep: $grep"
 
-runs_dir=`find $script_dir/runs -mindepth 1 -maxdepth 1 -executable`
-install_dir=`find $script_dir/install -mindepth 1 -maxdepth 1 -executable`
+get_dir(){
+    local dir
+    dir=`find $script_dir/$1 -mindepth 1 -maxdepth 1 -executable`
+    echo $dir
+}
+
+runs_dir=`get_dir runs`
+install_dir=`get_dir install`
+build_dir=`get_dir build`
+softwares_dir=`get_dir softwares`
 
 if [[ $install == "1" ]]; then
     for s in $install_dir; do
@@ -70,7 +78,7 @@ if [[ $install == "1" ]]; then
         log "running script: $s"
  
     if [[ $dry_run == "0" ]]; then
-        $s "Fedora-w" # can Change it to other distro but need a better method to do this
+        $s
     fi
 
     done

@@ -21,6 +21,13 @@ install=""
 build=""
 config=""
 
+help() {
+    printf "\t--dry    \t\t check which scripts will run, can be used with other flags\n"
+    printf "\t--config \t\t gets the .dot repository from github and setup config according to PyDevC\n"
+    printf "\t--build  \t\t builds from source\n"
+    printf "\t--install\t\t installs all essesntial tools and desktop utilites\n"
+}
+
 while [[ $# -gt 0 ]]; do
 
     # check if its a flag
@@ -35,6 +42,9 @@ while [[ $# -gt 0 ]]; do
             build="1"
         elif [[ "$1" == "--config" ]]; then
             config="1"
+        elif [[ "$1" == "--help" ]]; then
+            help
+            exit 0
         fi
 
     else

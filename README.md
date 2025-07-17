@@ -17,3 +17,5 @@ Select your branch and download zip file or clone and switch to desired branch.
 running instructions are given in each branch, there are chances of some files 
 being same in multiple branches (for now they are seperate, but I am thinking
 of changing to keep one universal same file for all the branches).
+
+> Note: we are removing the scripts from the main branch

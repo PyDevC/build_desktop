@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo dnf install neovim luarocks
+sudo apt install -y neovim luarocks

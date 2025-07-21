@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo dnf install gcc g++ clang clang++
+sudo apt install -y build-essentials clang

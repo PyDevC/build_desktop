@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo dnf install -y wl-clipboard
+sudo apt install -y wl-clipboard

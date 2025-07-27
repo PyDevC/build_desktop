@@ -8,18 +8,17 @@ log(){
     elif [[ $1 == "-n" ]]; then
         echo "$2"
     else
-        echo "$@"
+        echo "${@}"
     fi
-    echo "\n"
 }
 
 log "prerequisites"
 
 log "python dependences"
-sudo dnf install python3-setuptools python3-wheel
+sudo apt install python3-setuptools python3-wheel
 
 log "env-modules"
-sudo dnf install environment-modules
+sudo apt install environment-modules
 
 log "-p" "Group Membership"
 sudo usermod -a -G video,render $LOGNAME
@@ -49,8 +48,6 @@ log "ROCm"
 sudo apt install rocm
 
 log "Post installation"
-# This setup requires the installation of rocm in /opt/rocm in fedora for it to work
-# Also for normal dnf installations the rocm.conf is not generated for fedora
 sudo tee --append /etc/ld.so.conf.d/rocm.conf <<EOF
 /opt/rocm/lib
 /opt/rocm/lib64

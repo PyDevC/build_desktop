@@ -99,7 +99,6 @@ if [[ $config == "1" ]]; then
 
     if [[ ! -d $HOME/.dot ]]; then
         git clone https://github.com/PyDevC/.dot.git $HOME/.dot
-        mkdir -p ~/personal ~/personal/exp ~/personal/env/python
 
         # this is needed so that It works as intended
         ln -s ~/.dot/bin ~/bin

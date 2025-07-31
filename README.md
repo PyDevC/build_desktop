@@ -11,7 +11,7 @@ You can install, or build using the scirpts predefined.
 ## Working
 
 This desktop build system has various branches
-ex: Fedora42 (cause that's the only one for now)
+ex: Fedora42, Ubuntu24.04 
 
 Select your branch and download zip file or clone and switch to desired branch.
 running instructions are given in each branch, there are chances of some files 

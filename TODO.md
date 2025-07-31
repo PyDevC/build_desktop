@@ -7,4 +7,4 @@
 - move rustup from runs to install
 - Add redundant scripts for normal installation if it is something essential
 
-- write documentation for `run`
+- write documentation for `run` -- improve it

@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-if [[ ! -d $HOME/personal/contrib/cpython ]]; then
-    git clone https://github.com/python/cpython.git $HOME/personal/contrib/cpython
+loc="$HOME/personal/cpython"
+
+if [[ ! -d $loc ]]; then
+    git clone https://github.com/python/cpython.git $loc
 else
-    git fetch 
-    git pull
+    git -c $loc fetch 
+    git -c $loc pull
 fi

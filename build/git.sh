@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Can't run, script is not complete"
+exit 0
 
 if [[ -z $(which git) ]]; then
     sudo dnf install git

@@ -5,7 +5,7 @@ if [[ ! -z $1 ]];then
     version=$1
 fi
 
-loc=$HOME/personal/neovim
+loc=$HOME/personal/github/neovim
 
 sudo dnf -y install ninja-build cmake gcc make gettext curl glibc-gconv-extra git lua5.1
 

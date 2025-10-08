@@ -23,7 +23,7 @@ capture_time(){
     fi
     local start=$(date +%s%3N)
     local end=$(date +%s%3N)
-    echo "$((end - start)) ms"
+    echo "** $1 in $((end - start)) ms"
 }
 
 help() {
@@ -31,6 +31,7 @@ help() {
     printf "\t--config \t\t gets the .dot repository from github and setup config according to PyDevC\n"
     printf "\t--build  \t\t builds from source\n"
     printf "\t--install\t\t installs all essesntial tools and desktop utilites\n"
+    printf "\t--timeit \t\t display time for each script in ms"
 }
 
 while [[ $# -gt 0 ]]; do
@@ -43,7 +44,7 @@ while [[ $# -gt 0 ]]; do
             dry_run="1"
         elif [[ "$1" == "--install" ]]; then
             install="1"
-        elif [[ "$1" == "--build" ]]; then # not implemented
+        elif [[ "$1" == "--build" ]]; then
             build="1"
         elif [[ "$1" == "--config" ]]; then
             config="1"
@@ -96,20 +97,16 @@ install_dir=`get_dir install`
 build_dir=`get_dir build`
 
 if [[ $install == "1" ]]; then
-    echo "Hello"
     for s in $install_dir; do
         if echo "$s" | grep -vq "$grep"; then
             log "grep \"$grep\" filtered out $s"
             continue
         fi
-
         log "running script: $s"
- 
-    if [[ $dry_run == "0" ]]; then
-        $s
-    fi
-    capture_time
-
+        if [[ $dry_run == "0" ]]; then
+            $s
+        fi
+        capture_time $s
     done
     time=$(date +%s%3N)
     echo "Total time: $((time - mainstart))ms"
@@ -118,17 +115,14 @@ if [[ $install == "1" ]]; then
 fi
 
 if [[ $config == "1" ]]; then
-
     if [[ ! -d $HOME/.dot ]]; then
         git clone https://github.com/PyDevC/.dot.git $HOME/.dot
-
         # this is needed so that It works as intended
         ln -s ~/.dot/bin ~/bin
         rm ~/.zshrc
         rm ~/.zsh_profile
         ln -s ~/.dot/zsh/.zshrc ~/.zshrc
         ln -s ~/.dot/zsh/.zsh_profile ~/.zsh_profile
-
         . ~/.zshrc
         syncf
         exit 0
@@ -139,19 +133,34 @@ if [[ $config == "1" ]]; then
     fi
 fi
 
-echo "Hello"
+if [[ $build == "1" ]]; then
+    for s in $build_dir; do
+        if echo "$s" | grep -vq "$grep"; then
+            log "grep \"$grep\" filtered out $s"
+            continue
+        fi
+        log "running script: $s"
+        if [[ $dry_run == "0" ]]; then
+            $s
+        fi
+        capture_time $s
+    done
+    time=$(date +%s%3N)
+    echo "Total time: $((time - mainstart))ms"
+    echo "close"
+    exit 0
+fi
+
 for s in $runs_dir; do
     if echo "$s" | grep -vq "$grep"; then
         log "grep \"$grep\" filtered out $s"
         continue
     fi
-
     log "running script: $s"
-
     if [[ $dry_run == "0" ]]; then
         $s
     fi
-    capture_time
+    capture_time $s
     time=$(date +%s%3N)
     echo "Total time: $((time - mainstart)) ms"
 done

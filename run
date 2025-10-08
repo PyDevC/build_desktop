@@ -1,15 +1,7 @@
 #!/usr/bin/env bash
 
+mainstart=$(date +%s%3N)
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-
-if [ -z "$DEV_ENV" ]; then
-    echo "DEV_ENV not present"
-    echo "try DEV_ENV=\$(pwd), if running in the main build_desktop repository"
-    exit 1
-fi
-
-# Do not remove cause DEV_ENV will be used by various scripts in future
-export DEV_ENV="$DEV_ENV"
 
 # ARGS
 grep=""
@@ -20,6 +12,19 @@ dry_run="0"
 install=""
 build=""
 config=""
+
+# Capture Time
+time=""
+timeit=""
+
+capture_time(){
+    if [[ "$timeit" != "1" ]];then
+        return
+    fi
+    local start=$(date +%s%3N)
+    local end=$(date +%s%3N)
+    echo "$((end - start)) ms"
+}
 
 help() {
     printf "\t--dry    \t\t check which scripts will run, can be used with other flags\n"
@@ -42,6 +47,8 @@ while [[ $# -gt 0 ]]; do
             build="1"
         elif [[ "$1" == "--config" ]]; then
             config="1"
+        elif [[ "$1" == "--timeit" ]]; then
+            timeit="1"
         elif [[ "$1" == "--help" ]]; then
             help
             exit 0
@@ -55,6 +62,17 @@ while [[ $# -gt 0 ]]; do
 
     shift
 done
+
+
+if [ -z "$DEV_ENV" ]; then
+    echo "DEV_ENV not present"
+    echo "try DEV_ENV=\$(pwd), if running in the main build_desktop repository"
+    exit 1
+fi
+
+# Do not remove cause DEV_ENV will be used by various scripts in future
+export DEV_ENV="$DEV_ENV"
+
 
 log() {
     # I don't think I will need to store logs in a file
@@ -76,9 +94,9 @@ get_dir(){
 runs_dir=`get_dir runs`
 install_dir=`get_dir install`
 build_dir=`get_dir build`
-softwares_dir=`get_dir softwares`
 
 if [[ $install == "1" ]]; then
+    echo "Hello"
     for s in $install_dir; do
         if echo "$s" | grep -vq "$grep"; then
             log "grep \"$grep\" filtered out $s"
@@ -90,8 +108,12 @@ if [[ $install == "1" ]]; then
     if [[ $dry_run == "0" ]]; then
         $s
     fi
+    capture_time
 
     done
+    time=$(date +%s%3N)
+    echo "Total time: $((time - mainstart))ms"
+    echo "close"
     exit 0
 fi
 
@@ -117,6 +139,7 @@ if [[ $config == "1" ]]; then
     fi
 fi
 
+echo "Hello"
 for s in $runs_dir; do
     if echo "$s" | grep -vq "$grep"; then
         log "grep \"$grep\" filtered out $s"
@@ -128,4 +151,7 @@ for s in $runs_dir; do
     if [[ $dry_run == "0" ]]; then
         $s
     fi
+    capture_time
+    time=$(date +%s%3N)
+    echo "Total time: $((time - mainstart)) ms"
 done

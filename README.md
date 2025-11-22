@@ -1,8 +1,9 @@
 # BUILD Desktop
 
 Get up ready running Ubuntu or Fedora desktop
-*Not perfect, it may break* I will remove this line when I think that each and 
-everything works
+
+> I am moving to another build setup that involves containers for various tasks
+> I have moved to [Trench](https://github.com/PyDevC/trench)
 
 ## Running first time in your system
 ```bash

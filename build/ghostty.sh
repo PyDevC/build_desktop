@@ -4,6 +4,7 @@
 loc="$HOME/personal/github/ghostty"
 
 if [[ ! -d $loc ]]; then
+    mkdir $loc
     git clone https://github.com/ghostty-org/ghostty.git $loc
 fi
 
@@ -14,5 +15,6 @@ sudo dnf install \
   libadwaita-devel \
   gettext
 
-cd $loc
+pushd $loc
 sudo zig build -p /usr -Doptimize=ReleaseFast
+popd 

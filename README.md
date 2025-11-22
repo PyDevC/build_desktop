@@ -19,7 +19,6 @@ run neovim # now this command is runnable from anywhere
 ```
 
 ## building from source
-*Under development*
 
 ```bash
 run --build # This is under development

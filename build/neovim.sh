@@ -10,15 +10,17 @@ loc=$HOME/personal/github/neovim
 sudo dnf -y install ninja-build cmake gcc make gettext curl glibc-gconv-extra git lua5.1
 
 if [[ ! -d $loc ]];then
-    git clone https://github.com/neovim/neovim.git $neovim_loc
+    mkdir $loc
+    git clone https://github.com/neovim/neovim.git $loc
 else
     git fetch --all
     git pull --all
 fi
 
-cd $loc
+pushd $loc
 git checkout $version
 
 make clean
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make build install
+popd
